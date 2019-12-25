@@ -1,0 +1,15 @@
+html {
+    background-color: rgb(245, 244, 244);
+}
+
+.danger {
+    color: red;
+}
+
+.post {
+    background-color: white;
+    border: 2px solid gray;
+    padding: 5px;
+    margin: 5px;
+}
+
