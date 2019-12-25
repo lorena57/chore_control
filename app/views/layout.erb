@@ -11,8 +11,14 @@
 
     <h1>Chore Control! Where you control your chores.</h1>
     <% if logged_in? %>
-        <p><a href="/chores">Posts</a></p>
+        <p><a href="/home">Home</a> <a href="/posts">Posts</a>
+        <form action="/logout" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Logout">
+        </form>
+        </p>
     <% end %>
     <%= yield %> 
 </body>
 </html>
+

@@ -31,5 +31,10 @@ class SessionsController < ApplicationController
             redirect '/home'
         end
     end
+
+    delete '/logout' do
+        session.clear
+        redirect '/login'
+    end
     
 end
