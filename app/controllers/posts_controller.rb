@@ -16,8 +16,8 @@ class PostsController < ApplicationController
     post '/posts' do
         authenticate
         u = current_user
-        u.posts.build(content: params[:content])
-        if u.save
+        new_chore = u.posts.build(content: params[:content])
+        if new_chore.save!
             redirect '/posts'
         else
             @messages = "There was an issue"
@@ -25,14 +25,30 @@ class PostsController < ApplicationController
         end
     end
 
-    
+    #Delete a chore
 
+    delete '/posts/:id' do
+        post = Post.find_by(id: params[:id])
+        authenticate_user(@post)
+        if post
+            post.destroy
+            redirect '/posts'
+        end
+    end
 
+    #Edit a chore
+    get '/posts/:id/edit' do
+        @post = Post.find_by(id: params[:id])
+        
+        erb :'posts/edit'
+ 
+    end
 
-
-
-
-
-
+    patch '/posts/:id' do
+        @post = Post.find_by(id: params[:id])
+        authenticate_user(@post)
+        @post.update(content: params[:content])
+        redirect '/posts'
+    end
 
 end 
